@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Baekjoon1697 {
+public class Baekjoon1697<unsigned> {
 
     static int n;
     static int k;
@@ -36,17 +36,21 @@ public class Baekjoon1697 {
                     next = 2 * position;
                 }
 
-                if (next == k) {
-                    return visited[position];
-                }
+                if (next == k) return visited[position];
 
-                if (next >= 0 && next < visited.length && visited[next] == 0) {
+                if (isPostiontion(next)) {
                     queue.add(next);
                     visited[next] = visited[position] + 1;
                 }
             }
         }
         return 0;
+    }
+
+    public static boolean isPostiontion(int position) {
+        if (position >= 0 && position < visited.length && visited[position] == 0) {
+            return true;
+        } else return false;
     }
 
     public static void main(String[] args) throws IOException {
