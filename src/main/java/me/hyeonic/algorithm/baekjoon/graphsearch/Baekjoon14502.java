@@ -25,18 +25,19 @@ public class Baekjoon14502 {
         }
     }
 
+    // dfs + 백트래킹으로 3개의 벽 세우기
     public static void dfs(int count) {
-        if (count == 3) {
-            bfs();
+        if (count == 3) { // 벽 3개를 세웠을 때
+            bfs();        // bfs로 바이러스를 채운다.
             return;
         }
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (map[i][j] == 0) {
-                    map[i][j] = 1;
+                    map[i][j] = 1; // 벽 세우기
                     dfs(count + 1);
-                    map[i][j] = 0;
+                    map[i][j] = 0; // 벽 허물기
                 }
             }
         }
@@ -52,7 +53,7 @@ public class Baekjoon14502 {
         }
 
         Queue<Location> queue = new LinkedList<>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) { // queue에 바이러스를 담는다.
             for (int j = 0; j < m; j++) {
                 if (virusMap[i][j] == 2) {
                     queue.add(new Location(i, j));
@@ -65,17 +66,16 @@ public class Baekjoon14502 {
             int pollX = location.x;
             int pollY = location.y;
 
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) { // 4방향 탐색
                 int x = pollX + xMove[i];
                 int y = pollY + yMove[i];
-                if (isLocation(x, y)) {
+                if (isLocation(x, y)) { // 벽이 아닌 곳이면 바이러스를 퍼트린다.
                     virusMap[x][y] = 2;
                     queue.add(new Location(x, y));
-
                 }
             }
         }
-        max = countVirus();
+        max = Math.max(max, countSafeArea()); // 안전구역의 값을 갱신한다.
     }
 
     private static boolean isLocation(int x, int y) {
@@ -83,7 +83,8 @@ public class Baekjoon14502 {
         return false;
     }
 
-    private static int countVirus() {
+    // 안전 구역의 개수를 count한다.
+    private static int countSafeArea() {
         int count = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -92,7 +93,7 @@ public class Baekjoon14502 {
                 }
             }
         }
-        return Math.max(max, count);
+        return count;
     }
 
     private static void print(int[][] map) {
@@ -121,9 +122,7 @@ public class Baekjoon14502 {
                 map[i][j] = Integer.parseInt(input[j]);
             }
         }
-
 //        print(map);
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (map[i][j] == 0) {
