@@ -1,4 +1,6 @@
-package me.hyeonic.algorithm.programmers.level1.sort;
+package me.hyeonic.algorithm.programmers.level2.exhaustivesearch;
+
+import java.util.Arrays;
 
 public class Programmers42842 {
 
@@ -23,9 +25,9 @@ public class Programmers42842 {
 
     public static void main(String[] args) {
 
-        solution(10, 2);
-        solution(8, 1);
-        solution(24, 24);
+        System.out.println(Arrays.toString(solution(10, 2)));
+        System.out.println(Arrays.toString(solution(8, 1)));
+        System.out.println(Arrays.toString(solution(24, 24)));
 
     }
 }

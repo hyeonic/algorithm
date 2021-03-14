@@ -1,4 +1,4 @@
-package me.hyeonic.algorithm.programmers.level1.sort;
+package me.hyeonic.algorithm.programmers.level2.sort;
 
 import java.util.Arrays;
 
