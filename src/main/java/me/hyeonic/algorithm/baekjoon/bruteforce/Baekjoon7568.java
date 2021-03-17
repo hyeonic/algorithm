@@ -39,10 +39,8 @@ public class Baekjoon7568 {
 
         for (Person person1 : persons) {
             for (Person person2 : persons) {
-                if (person1.equals(person2)) continue;
-                else if (person1.weight < person2.weight && person1.height < person2.height) {
+                if (person1.weight < person2.weight && person1.height < person2.height)
                     person1.rank += 1;
-                }
             }
         }
 

@@ -22,10 +22,8 @@ public class Baekjoon4796 {
         while (l != 0 && p != 0 && v != 0) {
             int temp = (v / p) * l;
 
-            if (v - (v / p) * p <= l)
-                temp += v - (v / p) * p;
-            else
-                temp += l;
+            if (v - (v / p) * p <= l) temp += v - (v / p) * p;
+            else temp += l;
 
             bufferedWriter.write("Case " + index + ": " + temp + "\n");
 
