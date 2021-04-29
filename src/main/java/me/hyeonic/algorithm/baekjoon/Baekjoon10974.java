@@ -1,4 +1,6 @@
-package meimport java.io.BufferedReader;
+package me.hyeonic.algorithm.baekjoon;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,5 +47,5 @@ public class Baekjoon10974 {
             }
         }
     }
-}.hyeonic.algorithm.baekjoon;
+}
 
