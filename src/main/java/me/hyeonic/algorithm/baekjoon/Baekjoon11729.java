@@ -13,6 +13,7 @@ public class Baekjoon11729 {
         int n = scanner.nextInt();
 
         hanoi(n, 1, 2, 3);
+        System.out.println(count);
         System.out.println(stringBuilder.toString());
     }
 
