@@ -29,7 +29,7 @@
 [예제 7-3](https://github.com/hyeonic/algorithm/blob/main/src/main/java/me/hyeonic/algorithm/thisiscodingtest/chapter7/Example7_3.java)
 
 코딩 테스트의 이진 탐색 문제는 탐색 범위가 큰 상황에서의 탐색을 가정하는 문제가 많다. 
-따라서 탐색 범위가 2,000만을 넘어가면 이진 탐색과 같이 **O(logN)**의 속도를 내야 하는 알고리즘을 떠올려야 문제를 풀 수 있는 경우가 많다.
+따라서 탐색 범위가 2,000만을 넘어가면 이진 탐색과 같이 **O(logN)** 의 속도를 내야 하는 알고리즘을 떠올려야 문제를 풀 수 있는 경우가 많다.
 
 ---
 ### References
