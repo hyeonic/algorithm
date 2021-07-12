@@ -1,4 +1,4 @@
-package me.hyeonic.algorithm.thisiscodingtest.chapter3;
+package me.hyeonic.algorithm.thisiscodingtest.chapter03;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -22,11 +22,12 @@ public class Practice3_2 {
         int first = nums[n - 1];
         int second = nums[n - 2];
 
-        int cnt = (m / (k + 1)) * k + (m % (k + 1));
+        int count = (m / (k + 1)) * k;
+        count += m % (k + 1);
 
         int result = 0;
-        result += cnt * first;
-        result += (m - cnt) * second;
+        result += count * first;
+        result += (m - count) * second;
 
         System.out.println(result);
     }
