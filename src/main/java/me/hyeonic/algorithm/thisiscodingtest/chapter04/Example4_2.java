@@ -1,4 +1,4 @@
-package me.hyeonic.algorithm.thisiscodingtest.chapter4;
+package me.hyeonic.algorithm.thisiscodingtest.chapter04;
 
 import java.util.Scanner;
 
