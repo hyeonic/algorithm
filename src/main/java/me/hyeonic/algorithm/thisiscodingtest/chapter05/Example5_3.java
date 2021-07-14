@@ -1,4 +1,4 @@
-package me.hyeonic.algorithm.thisiscodingtest.chapter5;
+package me.hyeonic.algorithm.thisiscodingtest.chapter05;
 
 public class Example5_3 {
 

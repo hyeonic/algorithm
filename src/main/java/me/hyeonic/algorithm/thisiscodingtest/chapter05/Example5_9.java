@@ -1,4 +1,4 @@
-package me.hyeonic.algorithm.thisiscodingtest.chapter5;
+package me.hyeonic.algorithm.thisiscodingtest.chapter05;
 
 import java.util.LinkedList;
 import java.util.Queue;

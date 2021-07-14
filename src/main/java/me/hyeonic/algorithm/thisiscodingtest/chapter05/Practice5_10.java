@@ -1,9 +1,8 @@
-package me.hyeonic.algorithm.thisiscodingtest.chapter5;
+package me.hyeonic.algorithm.thisiscodingtest.chapter05;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Example5_10 {
+public class Practice5_10 {
 
     public static int n, m;
     public static int[][] graph;

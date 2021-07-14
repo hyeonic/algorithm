@@ -1,10 +1,10 @@
-package me.hyeonic.algorithm.thisiscodingtest.chapter5;
+package me.hyeonic.algorithm.thisiscodingtest.chapter05;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Example5_11 {
+public class Practice5_11 {
 
     private static int n, m;
     private static int[][] graph;
