@@ -60,3 +60,8 @@
  - 문자를 좌표로 바꾸기 위한 초반부를 잘 알아두자.
 
 4. 게임 개발 [실전 4-4](https://github.com/hyeonic/algorithm/blob/main/src/main/java/me/hyeonic/algorithm/thisiscodingtest/chapter04/Practice4_4.java)
+
+---
+### References
+
+나동빈, 『이것이 취업을 위한 코딩 테스트다』, 출판지-한빛미디어(2020), 103p ~ 121p.

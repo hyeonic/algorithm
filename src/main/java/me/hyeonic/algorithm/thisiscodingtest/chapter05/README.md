@@ -116,10 +116,7 @@ BFS는 너브 우선 탐색이라는 의미를 가진다. 가까운 노드부터
 11. 미로 찾기 [실전 5-11](https://github.com/hyeonic/algorithm/blob/main/src/main/java/me/hyeonic/algorithm/thisiscodingtest/chapter05/Practice5_11.java)
  - BFS로 풀이
 
+---
+### References
 
-
-
-
-
-
-
+나동빈, 『이것이 취업을 위한 코딩 테스트다』, 출판지-한빛미디어(2020), 122p ~ 154p.
