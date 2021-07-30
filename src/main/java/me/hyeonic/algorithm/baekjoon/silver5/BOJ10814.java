@@ -1,4 +1,4 @@
-package me.hyeonic.algorithm.baekjoon.silver1;
+package me.hyeonic.algorithm.baekjoon.silver5;
 
 import java.util.ArrayList;
 import java.util.Comparator;
