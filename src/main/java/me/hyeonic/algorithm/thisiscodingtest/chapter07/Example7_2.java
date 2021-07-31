@@ -1,27 +1,27 @@
-package me.hyeonic.algorithm.thisiscodingtest.chapter7;
+package me.hyeonic.algorithm.thisiscodingtest.chapter07;
 
 import java.util.Scanner;
 
-public class Example7_3 {
+public class Example7_2 {
 
-    // 이진 탐색 소스코드 구현(반복문)
+    // 이진 탐색 소스코드 구현(재귀 함수)
     private static int binarySearch(int[] array, int target, int start, int end) {
-        while (start <= end) {
-            int mid = start + end / 2;
-
-            // 찾은 경우 중간 인덱스 반환
-            if (array[mid] == target) {
-                return mid;
-            } else if (array[mid] > target) {
-                // 중간점의 값보다 찾고자 하는 값이 작은 경우 왼쪽 확인
-                end = mid - 1;
-            } else {
-                // 중간점의 값보다 찾고자 하는 값이 큰 경우 오른쪽 확인
-                start = mid + 1;
-            }
+        if (start > end) {
+            return -1;
         }
 
-        return -1;
+        int mid = (start + end) / 2;
+
+        // 찾은 경우 중간 인덱스 반환
+        if (array[mid] == target) {
+            return mid;
+        } else if (array[mid] > target) {
+            // 중간점의 값보다 찾고자 하는 값이 작은 경우 왼쪽 확인
+            return binarySearch(array, target, start, mid - 1);
+        } else {
+            // 중간점의 값보다 찾고자 하는 값이 큰 경우 오른쪽 확인
+            return binarySearch(array, target, mid + 1, end);
+        }
     }
 
     public static void main(String[] args) {
