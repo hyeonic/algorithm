@@ -1,41 +1,37 @@
 package me.hyeonic.algorithm.baekjoon.silver4;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
-public class BOJ10815 {
+public class BOJ1920 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         int n = scanner.nextInt();
-        List<Integer> numberCards = new ArrayList<>();
-
+        int[] numbers = new int[n];
         for (int i = 0; i < n; i++) {
-            numberCards.add(scanner.nextInt());
+            numbers[i] = scanner.nextInt();
         }
 
-        Collections.sort(numberCards);
+        Arrays.sort(numbers);
 
         int m = scanner.nextInt();
+
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < m; i++) {
             int number = scanner.nextInt();
-            if (Collections.binarySearch(numberCards, number) >= 0) {
-                stringBuilder.append("1 ");
+            if (Arrays.binarySearch(numbers, number) >= 0) {
+                stringBuilder.append("1").append("\n");
             } else {
-                stringBuilder.append("0 ");
+                stringBuilder.append("0").append("\n");
             }
         }
         System.out.println(stringBuilder);
     }
 }
 
-class BOJ10815v2 {
-
+class BOJ1920v2 {
     static int[] numbers;
 
     private static boolean binarySearch(int target, int start, int end) {
@@ -59,7 +55,6 @@ class BOJ10815v2 {
 
         int n = scanner.nextInt();
         numbers = new int[n];
-
         for (int i = 0; i < n; i++) {
             numbers[i] = scanner.nextInt();
         }
@@ -67,20 +62,21 @@ class BOJ10815v2 {
         Arrays.sort(numbers);
 
         int m = scanner.nextInt();
+
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < m; i++) {
             int number = scanner.nextInt();
             if (binarySearch(number, 0, n - 1)) {
-                stringBuilder.append("1 ");
+                stringBuilder.append("1").append("\n");
             } else {
-                stringBuilder.append("0 ");
+                stringBuilder.append("0").append("\n");
             }
         }
         System.out.println(stringBuilder);
     }
 }
 
-class BOJ10815v3 {
+class BOJ1920v3 {
 
     static int[] numbers;
 
@@ -105,7 +101,6 @@ class BOJ10815v3 {
 
         int n = scanner.nextInt();
         numbers = new int[n];
-
         for (int i = 0; i < n; i++) {
             numbers[i] = scanner.nextInt();
         }
@@ -113,13 +108,14 @@ class BOJ10815v3 {
         Arrays.sort(numbers);
 
         int m = scanner.nextInt();
+
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < m; i++) {
             int number = scanner.nextInt();
             if (binarySearch(number, 0, n - 1)) {
-                stringBuilder.append("1 ");
+                stringBuilder.append("1").append("\n");
             } else {
-                stringBuilder.append("0 ");
+                stringBuilder.append("0").append("\n");
             }
         }
         System.out.println(stringBuilder);
