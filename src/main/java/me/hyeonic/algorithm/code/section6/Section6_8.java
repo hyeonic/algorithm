@@ -1,9 +1,9 @@
-package me.hyeonic.algorithm.code;
+package me.hyeonic.algorithm.code.section6;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Session6_8 {
+public class Section6_8 {
 
     static int[] numbers;
 
