@@ -1,4 +1,4 @@
-package me.hyeonic.algorithm.baekjoon.silver2;
+package me.hyeonic.algorithm.baekjoon.gold5;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,13 +6,11 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class BOJ18352 {
+public class BOJ1753 {
 
-    private static int n, m, k, x;
-
+    private static int n, m, start;
     private static List<List<Node>> graph = new ArrayList<>();
-
-    private static int[] d = new int[300_001];
+    private static int[] d = new int[20_001];
 
     private static class Node {
         private int index;
@@ -66,10 +64,9 @@ public class BOJ18352 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        n = scanner.nextInt(); // 도시(노드)의 개수
-        m = scanner.nextInt(); // 도로(간선)의 개수
-        k = scanner.nextInt(); // 거리 정보
-        x = scanner.nextInt(); // 출발 도시의 번호
+        n = scanner.nextInt();
+        m = scanner.nextInt();
+        start = scanner.nextInt();
 
         for (int i = 0; i <= n; i++) {
             graph.add(new ArrayList<>());
@@ -78,24 +75,22 @@ public class BOJ18352 {
         for (int i = 0; i < m; i++) {
             int a = scanner.nextInt();
             int b = scanner.nextInt();
+            int c = scanner.nextInt();
 
-            graph.get(a).add(new Node(b, 1));
+            graph.get(a).add(new Node(b, c));
         }
 
         Arrays.fill(d, Integer.MAX_VALUE);
 
-        dijkstra(x);
+        dijkstra(start);
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 1; i <= n; i++) {
-            if (d[i] == k) {
-                stringBuilder.append(i).append("\n");
+            if (d[i] == Integer.MAX_VALUE) {
+                stringBuilder.append("INF\n");
+            } else {
+                stringBuilder.append(d[i]).append("\n");
             }
-        }
-
-        if (stringBuilder.toString().isBlank()) {
-            System.out.println("-1");
-            return;
         }
 
         System.out.println(stringBuilder);
