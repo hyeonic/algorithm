@@ -317,3 +317,82 @@ public class Example9_2 {
     }
 }
 ```
+
+### 플로이드 워셜 알고리즘
+
+플로이드 워셜 알고리즘<sup>Floyd-Warshall Algorithm</sup>은 
+'모든 지점에서 다른 모든 지점까지의 최단 경로를 모두 구해야 하는 경우' 에 사용할 수 있는 알고리즘이다.
+
+1. 단계마다 '거쳐 가는 노드' 를 기준으로 알고리즘을 수행한다. 하지만 매번 방문하지 않은 노드 중에 최단 거리를 갖는 노드를 찾을 필요가 없다는 점이 다르다.
+2. 플로이드 워셜 알고리즘은 다이나믹 프로그래밍이라는 특징을 가지고 있다.
+3. 노드의 개수가 N개 일 때 알고리즘 상으로 N번의 단계를 수행하며, 단계마다 O(_N<sup>2</sup>_)의 연산을 통해 '현재 노드를 거쳐 가는' 모든  경로를 고려한다.
+4. 총 시간 복잡도는 O(_N<sup>3</sup>_)이다.
+
+
+```java
+public class Example9_3 {
+
+    private static final int INF = (int) 1e9; // 무한을 의미하는 값으로 10억을 설정
+    // 노드의 개수(N), 간선의 개수(M)
+    // 노드으 개수는 최대 500개 라고 가정
+    private static int n, m;
+    // 2차원 배열(그래프 표현)을 만들기
+    private static int[][] graph = new int[501][501];
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        n = scanner.nextInt();
+        m = scanner.nextInt();
+
+        // 최단 거리 테이블을 모두 무한으로 초기화
+        for (int i = 0; i < 501; i++) {
+            Arrays.fill(graph[i], INF);
+        }
+
+        // 자기 자신에서 자기 자신으로 가는 비용 0으로 초기화
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (i == j) {
+                    graph[i][j] = 0;
+                }
+            }
+        }
+
+        // 각 간선에 대한 정보를 입력 받아, 그 값으로 초기화
+        for (int i = 0; i < m; i++) {
+            // A에서 B로 가는 비용은 C라고 설정
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            int c = scanner.nextInt();
+            graph[a][b] = c;
+        }
+
+        // 점화식에 따라 플로이드 워셜 알고리즘 수행
+        for (int i = 1; i <= n; i++) {
+            for (int a = 1; a <= n; a++) {
+                for (int b = 1; b <= n; b++) {
+                    graph[a][b] = Math.min(graph[a][b], graph[a][i] + graph[i][b]);
+                }
+            }
+        }
+
+        // 수행된 결과를 출력
+        for (int a = 1; a <= n; a++) {
+            for (int b = 1; b <= n; b++) {
+                // 도달할 수 없는 경우, INF 라고 출력
+                if (graph[a][b] == INF) {
+                    System.out.print("INF\t");
+                } else {
+                    // 도달할 수 있는 경우 거리를 출력
+                    System.out.print(graph[a][b] + "\t");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
+```
+
+
+
