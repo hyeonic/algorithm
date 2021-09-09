@@ -1,0 +1,34 @@
+package me.hyeonic.algorithm.baekjoon.silver2;
+
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class BOJ11279 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt();
+
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((o1, o2) -> {
+            if (o1 < o2) { // 내림차순
+                return 1;
+            }
+            return -1;
+        });
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            int x = scanner.nextInt();
+            if (x == 0 && !priorityQueue.isEmpty()) {
+                stringBuilder.append(priorityQueue.poll()).append("\n");
+            } else if (x == 0 && priorityQueue.isEmpty()) {
+                stringBuilder.append("0\n");
+            } else {
+                priorityQueue.add(x);
+            }
+        }
+
+        System.out.println(stringBuilder);
+    }
+}
