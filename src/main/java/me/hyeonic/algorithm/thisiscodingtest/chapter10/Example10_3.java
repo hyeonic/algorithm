@@ -44,7 +44,7 @@ public class Example10_3 {
         }
 
         // Union 연산을 각각 수행
-        for (int i =0; i < e; i++) {
+        for (int i = 0; i < e; i++) {
             int a = scanner.nextInt();
             int b = scanner.nextInt();
             unionParent(a, b);

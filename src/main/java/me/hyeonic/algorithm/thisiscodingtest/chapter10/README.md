@@ -41,7 +41,7 @@ _어떤 문제를 만나든 메모리와 시간을 염두에 두고 알고리즘
 
 ### 서로소 집합
 
-수학에서 **서로소 집합<sup>Disjoint Sets</sup>**이란 공통 원소가 없는 두 집합을 의미한다.
+수학에서 **서로소 집합<sup>Disjoint Sets</sup>** 이란 공통 원소가 없는 두 집합을 의미한다.
 서로소 집합 자료구조란 `서로소 부분 집합들로 나누어진 원소들의 데이터를 처리하기 위한 자료구조`라고 할 수 있다.
 
 서로소 집합 자료구조는 `union`과 `find` 2개의 연산으로 조작할 수 있다.
@@ -430,6 +430,92 @@ public class Example10_5 {
 크루스칼 알고리즘은 간선의 개수가 E개 일 때, O(_ElogE_)의 시간 복잡도를 가진다. 
 시간이 가장 오래걸리는 부분은 간선을 정렬하는 작업이며, E개의 데이터를 정렬했을 때의 시간 복잡도는 O(_ElogE_)를 나타낸다.
 크루스칼 내부에서 사용되는 서로소 집합 알고리즘은 정렬 시간 보다 작게 작용하기 때문에 무시된다.
+
+#### 위상 정렬
+
+**위상 정렬<sup>Topology Sort</sup>** 은 정렬 알고리즘의 일종이다. 
+위상 정렬은 순서가정해져 있는 일련의 작업을 차례대로 수행해야 할 때 사용할 수 있는 알고리즘이다.
+
+`위상 정렬은 방향 그래프의 모든 노드를 방향성에 거스르지 않도록 순서대로 나열한 것이다.`
+1. 진입차수가 0인 노드를 큐에 넣는다.
+2. 큐가 빌 때 까지 다음의 과정을 반복한다.
+   1. 큐에서 원소를 꺼내 해당 노드에서 출발하는 간선을 그래프에서 제거한다.
+   2. 새롭게 진입차수가 0이 된 노드를 큐에 넣는다.
+
+모든 원소를 방문하기 전에 큐가 비어버리면 사이클이 발생한 것이다.
+사이클이 존재하는 경우 사이클에 포함되어 있는 원소 중에서 어떠한 원소도 큐에 들어가지 못하기 때문이다.
+기본적으로 위상 정렬 문제에서는 사이클이 발생하지 않는다고 명시하는 경우가 더 많다. 
+
+위상 정렬의 답안은 `여러 가지가 될 수 있다`는 점이 특징이다.
+
+```java
+public class Example10_6 {
+
+    // 노드의 개수 (V)와 간선의 개수 (E)
+    // 노드의 개수는 최대 100,000개라고 가정
+    private static int v, e;
+    // 모든 노드에 대한 진입차수는 0으로 초기화
+    private static int[] indegree = new int[100_001];
+    // 각 노드에 연결된 간선 정보를 담기 위한 연결 리스트 초기회
+    private static List<List<Integer>> graph = new ArrayList<>();
+
+    // 위상 정렬 메소드
+    private static void topologySort() {
+        List<Integer> result = new ArrayList<>(); // 알고리즘 수행 결과를 담을 리스트
+        Queue<Integer> queue = new LinkedList<>();
+
+        // 처음 시작할 때는 진입차수가 0인 노드를 큐에 삽입
+        for (int i = 1; i <= v; i++) {
+            if (indegree[i] == 0) {
+                queue.offer(i);
+            }
+        }
+
+        // 큐가 빌 때까지 반복
+        while (!queue.isEmpty()) {
+            // 큐에서 원소 꺼내기
+            int now = queue.poll();
+            result.add(now);
+            // 해당 원소와 연결된 노드들의 진입차수에서 1 빼기
+            for (int i = 0; i < graph.get(now).size(); i++) {
+                indegree[graph.get(now).get(i)] -= 1;
+                // 새롭게 진입차수가 0이 되는 노드를 큐에 삽입
+                if (indegree[graph.get(now).get(i)] == 0) {
+                    queue.offer(graph.get(now).get(i));
+                }
+            }
+        }
+
+        // 위상 정렬을 수행한 결과 출력
+        for (int i = 0; i < result.size(); i++) {
+            System.out.print(result.get(i) + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        v = scanner.nextInt();
+        e = scanner.nextInt();
+
+        // 그래프 초기화
+        for (int i = 0; i <= v; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // 방향 그래프의 모든 간선 정보를 입력 받기
+        for (int i = 0; i < e; i++) {
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            graph.get(a).add(b); // 정점 A에서 B로 이동 가능
+            // 진입 차수를 1 증가
+            indegree[b]++;
+        }
+
+        topologySort();
+    }
+}
+```
 
 ### References
 
