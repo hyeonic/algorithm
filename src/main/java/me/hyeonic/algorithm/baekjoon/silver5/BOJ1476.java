@@ -13,14 +13,12 @@ public class BOJ1476 {
 
         int year = 1;
         int e = 1, s = 1, m = 1;
-        while (true) {
-            if (inputE == e && inputS == s && inputM == m) {
-                break;
-            }
+        while (!(inputE == e && inputS == s && inputM == m)) {
 
             e++;
             s++;
             m++;
+
             if (e == 16) {
                 e = 1;
             }

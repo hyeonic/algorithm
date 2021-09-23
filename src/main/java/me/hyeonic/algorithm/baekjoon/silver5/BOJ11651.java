@@ -1,32 +1,43 @@
 package me.hyeonic.algorithm.baekjoon.silver5;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BOJ11651 {
+
+    static class Location {
+        int x; int y;
+
+        public Location(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         int n = scanner.nextInt();
 
-        int[][] locations = new int[n][2];
+        List<Location> locations = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            locations[i][0] = scanner.nextInt();
-            locations[i][1] = scanner.nextInt();
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
+            locations.add(new Location(x, y));
         }
 
-        Arrays.sort(locations, (o1, o2) -> {
-
-            if (o1[1] == o2[1]) {
-                return o1[0] - o2[0];
+        locations.sort((a, b) -> {
+            if (a.y < b.y) {
+                return -1;
+            } else if (a.y == b.y && a.x < b.x) {
+                return -1;
+            } else if (a.y == b.y && a.x == b.x) {
+                return 0;
             }
-
-            return o1[1] - o2[1];
+            return 1;
         });
 
-        for (int[] location : locations) {
-            System.out.println(location[0] + " " + location[1]);
-        }
+        locations.forEach(location -> System.out.println(location.x + " " + location.y));
     }
 }

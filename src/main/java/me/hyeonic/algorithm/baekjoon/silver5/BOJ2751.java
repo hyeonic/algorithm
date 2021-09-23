@@ -17,9 +17,10 @@ public class BOJ2751 {
         }
 
         numbers.sort(null); // == Collections.sort(numbers) -> 내부적으로 같다. list.sort(null)로 처리된다.
+//        numbers.sort(Comparator.naturalOrder());
         StringBuilder stringBuilder = new StringBuilder();
         for (Integer number : numbers) {
-            stringBuilder.append(number + "\n");
+            stringBuilder.append(number).append("\n");
         }
         System.out.println(stringBuilder);
     }

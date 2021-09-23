@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class BOJ7568 {
 
     static class Person {
-        private int weight;
-        private int height;
+        private final int weight;
+        private final int height;
         private int rank;
 
         public Person(int weight, int height, int rank) {
@@ -27,7 +27,7 @@ public class BOJ7568 {
 
         for (int i = 0; i < n; i++) {
             String[] personInfo = scanner.nextLine().split(" ");
-            persons.add(new Person(Integer.valueOf(personInfo[0]), Integer.valueOf(personInfo[1]), 1));
+            persons.add(new Person(Integer.parseInt(personInfo[0]), Integer.parseInt(personInfo[1]), 1));
         }
 
         for (Person personA : persons) {

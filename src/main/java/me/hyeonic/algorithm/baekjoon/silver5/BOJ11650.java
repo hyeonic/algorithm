@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BOJ1650 {
+public class BOJ11650 {
 
     static class Location {
         int x; int y;
@@ -32,6 +32,8 @@ public class BOJ1650 {
                 return -1;
             } else if (a.x == b.x && a.y < b.y) {
                 return -1;
+            } else if (a.x == b.x && a.y == b.y) {
+                return 0;
             }
             return 1;
         });

@@ -1,7 +1,6 @@
 package me.hyeonic.algorithm.baekjoon.silver5;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -21,9 +20,8 @@ public class BOJ1427 {
         list.sort(Comparator.reverseOrder());
 
         StringBuilder stringBuilder = new StringBuilder();
-        for (Integer integer : list) {
-            stringBuilder.append(integer);
-        }
+        list.forEach(stringBuilder::append);
+
         System.out.println(stringBuilder);
     }
 }

@@ -31,7 +31,8 @@ public class BOJ1316 {
         for (int i = 1; i < word.length(); i++) {
             if (prev == word.charAt(i)) {
                 continue;
-            } else if (prev != word.charAt(i) && alphabets.contains(word.charAt(i))) {
+            } else if (prev != word.charAt(i)
+                    && alphabets.contains(word.charAt(i))) {
                 return false;
             }
 

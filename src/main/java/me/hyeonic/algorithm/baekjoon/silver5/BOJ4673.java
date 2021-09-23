@@ -24,7 +24,7 @@ public class BOJ4673 {
 
         int sum = n;
         for (String digit : digits) {
-            sum += Integer.valueOf(digit);
+            sum += Integer.parseInt(digit);
         }
 
         return sum;

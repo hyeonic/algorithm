@@ -26,13 +26,10 @@ public class BOJ1181 {
 
         String prevWord = "";
         for (String word : words) {
-            if (prevWord.equals(word)) {
-                prevWord = word;
-                continue;
-            } else {
+            if (!prevWord.equals(word)) {
                 System.out.println(word);
-                prevWord = word;
             }
+            prevWord = word;
         }
     }
 }
