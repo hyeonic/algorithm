@@ -11,32 +11,20 @@ public class BOJ1931 {
         int n = scanner.nextInt(); // 회의의 수
         int[][] conferences = new int[n][2];
 
-        scanner.nextLine();
-
         for (int i = 0; i < n; i++) {
-            String[] times = scanner.nextLine().split(" ");
-            String startTime = times[0];
-            String endTime = times[1];
-            conferences[i][0] = Integer.valueOf(startTime);
-            conferences[i][1] = Integer.valueOf(endTime);
+            conferences[i][0] = scanner.nextInt();
+            conferences[i][1] = scanner.nextInt();
         }
 
-        Arrays.sort(conferences, (x, y) -> {
-            if (x[0] > y[0]) {
-                return 1;
-            } else if (x[0] == y[0]) {
+        Arrays.sort(conferences, (o1, o2) -> {
+            if (o1[1] < o2[1]) {
+                return -1;
+            } else if (o1[1] == o2[1] && o1[0] < o2[0]) {
+                return -1;
+            } else if (o1[1] == o2[1] && o1[0] == o2[0]) {
                 return 0;
             }
-            return -1;
-        });
-
-        Arrays.sort(conferences, (x, y) -> {
-            if (x[1] > y[1]) {
-                return 1;
-            } else if (x[1] == y[1]) {
-                return 0;
-            }
-            return -1;
+            return 1;
         });
 
         int count = 1;

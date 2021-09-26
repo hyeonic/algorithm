@@ -20,13 +20,15 @@ public class BOJ11053 {
             dp[i] = 1;
 
             for (int j = 0; j < i; j++) {
-                if (numbers[j] < numbers[i] && dp[i] < dp[j] + 1) {
-                    dp[i] = dp[j] + 1;
+                if (numbers[j] < numbers[i]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
         }
 
-        int max = Arrays.stream(dp).max().getAsInt();
+        int max = Arrays.stream(dp)
+                .max()
+                .orElse(0);
         System.out.println(max);
     }
 }

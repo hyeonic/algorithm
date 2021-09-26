@@ -2,16 +2,15 @@ package me.hyeonic.algorithm.baekjoon.silver2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class BOJ18352 {
 
-    private static int n, m, k, x;
-
+    private static final int INF = Integer.MAX_VALUE;
     private static List<List<Node>> graph = new ArrayList<>();
-
     private static int[] d = new int[300_001];
 
     private static class Node {
@@ -22,23 +21,10 @@ public class BOJ18352 {
             this.index = index;
             this.distance = distance;
         }
-
-        public int getIndex() {
-            return index;
-        }
-
-        public int getDistance() {
-            return distance;
-        }
     }
 
     private static void dijkstra(int start) {
-        PriorityQueue<Node> priorityQueue = new PriorityQueue<>((o1, o2) -> {
-            if (o1.getDistance() < o2.distance) {
-                return -1;
-            }
-            return 1;
-        });
+        PriorityQueue<Node> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(node -> node.distance));
 
         priorityQueue.offer(new Node(start, 0));
         d[start] = 0;
@@ -46,18 +32,18 @@ public class BOJ18352 {
         while (!priorityQueue.isEmpty()) {
 
             Node currentNode = priorityQueue.poll();
-            int currentIndex = currentNode.getIndex();
-            int currentDistance = currentNode.getDistance();
+            int index = currentNode.index;
+            int distance = currentNode.distance;
 
-            if (d[currentIndex] < currentDistance) {
+            if (d[index] < distance) {
                 continue;
             }
 
-            for (int i = 0; i < graph.get(currentIndex).size(); i++) {
-                int cost = d[currentIndex] + graph.get(currentIndex).get(i).getDistance();
-                if (cost < d[graph.get(currentIndex).get(i).getIndex()]) {
-                    d[graph.get(currentIndex).get(i).getIndex()] = cost;
-                    priorityQueue.offer(new Node(graph.get(currentIndex).get(i).getIndex(), cost));
+            for (int i = 0; i < graph.get(index).size(); i++) {
+                int cost = d[index] + graph.get(index).get(i).distance;
+                if (cost < d[graph.get(index).get(i).index]) {
+                    d[graph.get(index).get(i).index] = cost;
+                    priorityQueue.offer(new Node(graph.get(index).get(i).index, cost));
                 }
             }
         }
@@ -66,10 +52,10 @@ public class BOJ18352 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        n = scanner.nextInt(); // 도시(노드)의 개수
-        m = scanner.nextInt(); // 도로(간선)의 개수
-        k = scanner.nextInt(); // 거리 정보
-        x = scanner.nextInt(); // 출발 도시의 번호
+        int n = scanner.nextInt(); // 도시(노드)의 개수
+        int m = scanner.nextInt(); // 도로(간선)의 개수
+        int k = scanner.nextInt(); // 거리 정보
+        int x = scanner.nextInt(); // 출발 도시의 번호
 
         for (int i = 0; i <= n; i++) {
             graph.add(new ArrayList<>());
@@ -82,7 +68,7 @@ public class BOJ18352 {
             graph.get(a).add(new Node(b, 1));
         }
 
-        Arrays.fill(d, Integer.MAX_VALUE);
+        Arrays.fill(d, INF);
 
         dijkstra(x);
 

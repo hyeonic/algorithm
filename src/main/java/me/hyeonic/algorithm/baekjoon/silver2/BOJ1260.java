@@ -29,11 +29,11 @@ public class BOJ1260 {
         // 큐가 빌 때까지 반복
         while (!queue.isEmpty()) {
             // 큐에서 하나의 원소를 뽑아 출력
-            int pollV = queue.poll();
-            System.out.print(pollV + " ");
+            v = queue.poll();
+            System.out.print(v + " ");
             // 해당 원소와 연결된, 방문하지 않은 원소 큐에 삽입
-            for (int i = 0; i < array[pollV].length; i++) {
-                if (array[pollV][i] == 1 && !visited[i]) {
+            for (int i = 0; i < array[v].length; i++) {
+                if (array[v][i] == 1 && !visited[i]) {
                     queue.offer(i);
                     visited[i] = true;
                 }
@@ -47,16 +47,14 @@ public class BOJ1260 {
         int n = scanner.nextInt();
         int m = scanner.nextInt();
         int v = scanner.nextInt();
-        scanner.nextLine();
 
         // 그래프 초기화
         array = new int[n + 1][n + 1];
         visited = new boolean[n + 1];
 
         for (int i = 0; i < m; i++) {
-            String[] position = scanner.nextLine().split(" ");
-            int x = Integer.valueOf(position[0]);
-            int y = Integer.valueOf(position[1]);
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
             array[x][y] = 1;
             array[y][x] = 1;
         }

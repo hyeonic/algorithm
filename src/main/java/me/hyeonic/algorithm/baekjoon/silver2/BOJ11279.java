@@ -1,5 +1,6 @@
 package me.hyeonic.algorithm.baekjoon.silver2;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -10,19 +11,14 @@ public class BOJ11279 {
 
         int n = scanner.nextInt();
 
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((o1, o2) -> {
-            if (o1 < o2) { // 내림차순
-                return 1;
-            }
-            return -1;
-        });
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Comparator.reverseOrder());
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < n; i++) {
             int x = scanner.nextInt();
             if (x == 0 && !priorityQueue.isEmpty()) {
                 stringBuilder.append(priorityQueue.poll()).append("\n");
-            } else if (x == 0 && priorityQueue.isEmpty()) {
+            } else if (x == 0) {
                 stringBuilder.append("0\n");
             } else {
                 priorityQueue.add(x);

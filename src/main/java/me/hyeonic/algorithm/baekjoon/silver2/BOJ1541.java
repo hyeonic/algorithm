@@ -13,7 +13,7 @@ public class BOJ1541 {
         for (int i = 0; i < split.length; i++) {
             int num = 0;
             for (String s : split[i].split("\\+")) {
-                num += Integer.valueOf(s);
+                num += Integer.parseInt(s);
             }
 
             sum = i == 0 ? num : sum - num;
