@@ -24,7 +24,7 @@ public class BOJ11286 {
             int x = scanner.nextInt();
             if (x == 0 && !priorityQueue.isEmpty()) {
                 stringBuilder.append(priorityQueue.poll()).append("\n");
-            } else if (x == 0 && priorityQueue.isEmpty()) {
+            } else if (x == 0) {
                 stringBuilder.append("0\n");
             } else {
                 priorityQueue.add(x);

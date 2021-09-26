@@ -1,25 +1,24 @@
 package me.hyeonic.algorithm.baekjoon.silver1;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
 public class BOJ2667 {
 
     private static int n;
-    private static int count;
     private static int[][] graph;
     private static boolean[][] visited;
-    private static int[] departments;
 
     // 이동할 네 가지 방향 정의 (상, 하, 좌, 우)
-    public static int[] dx = {-1, 1, 0, 0};
-    public static int[] dy = {0, 0, -1, 1};
+    private static int[] dx = {-1, 1, 0, 0};
+    private static int[] dy = {0, 0, -1, 1};
 
     static class Location {
-        int x;
-        int y;
+        private int x;
+        private int y;
 
         public Location(int x, int y) {
             this.x = x;
@@ -27,25 +26,88 @@ public class BOJ2667 {
         }
     }
 
-    private static void bfs(int x, int y) {
+    private static int bfs(int x, int y) {
         Queue<Location> queue = new LinkedList<>();
         queue.add(new Location(x, y));
         visited[x][y] = true;
-        graph[x][y] = count;
+        int count = 1;
 
         while (!queue.isEmpty()) {
-            Location pollLocation = queue.poll();
+            Location location = queue.poll();
 
             for (int i = 0; i < 4; i++) {
-                x = pollLocation.x + dx[i];
-                y = pollLocation.y + dy[i];
+                x = location.x + dx[i];
+                y = location.y + dy[i];
 
                 if (isLocation(x, y)) {
                     queue.add(new Location(x, y));
                     visited[x][y] = true;
-                    graph[x][y] = count;
+                    count++;
                 }
             }
+        }
+
+        return count;
+    }
+
+    private static boolean isLocation(int x, int y) {
+        if (x < 0 || x >= n || y < 0 || y >= n || visited[x][y] || graph[x][y] == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        n = scanner.nextInt();
+        scanner.nextLine();
+        graph = new int[n][n];
+        visited = new boolean[n][n];
+
+        for (int i = 0; i < n; i++) {
+            String[] row = scanner.nextLine().split("");
+            for (int j = 0; j < n; j++) {
+                graph[i][j] = Integer.parseInt(row[j]);
+            }
+        }
+
+        List<Integer> departments = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!visited[i][j] && graph[i][j] != 0) {
+                    departments.add(bfs(i, j));
+                }
+            }
+        }
+
+        System.out.println(departments.size());
+        departments.stream()
+                .sorted()
+                .forEach(System.out::println);
+    }
+}
+
+class BOJ2667DFS {
+
+    private static int n, count;
+    private static int[][] graph;
+    private static boolean[][] visited;
+
+    // 이동할 네 가지 방향 정의 (상, 하, 좌, 우)
+    private static int[] dx = {-1, 1, 0, 0};
+    private static int[] dy = {0, 0, -1, 1};
+
+    private static void dfs(int x, int y) {
+
+        if (!isLocation(x, y)) {
+            return;
+        }
+
+        visited[x][y] = true;
+        count++;
+        for (int i = 0; i < 4; i++) {
+            dfs(x + dx[i], y + dy[i]);
         }
     }
 
@@ -67,33 +129,24 @@ public class BOJ2667 {
         for (int i = 0; i < n; i++) {
             String[] row = scanner.nextLine().split("");
             for (int j = 0; j < n; j++) {
-                graph[i][j] = Integer.valueOf(row[j]);
+                graph[i][j] = Integer.parseInt(row[j]);
             }
         }
 
-        count = 0;
+        List<Integer> departments = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (!visited[i][j] && graph[i][j] != 0) {
-                    count++;
-                    bfs(i, j);
+                    dfs(i, j);
+                    departments.add(count);
+                    count = 0;
                 }
             }
         }
 
-        int[] apartments = new int[count + 1];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (graph[i][j] != 0) {
-                    apartments[graph[i][j]]++;
-                }
-            }
-        }
-
-        Arrays.sort(apartments);
-        System.out.println(count);
-        for (int i = 1; i <= count; i++) {
-            System.out.println(apartments[i]);
-        }
+        System.out.println(departments.size());
+        departments.stream()
+                .sorted()
+                .forEach(System.out::println);
     }
 }

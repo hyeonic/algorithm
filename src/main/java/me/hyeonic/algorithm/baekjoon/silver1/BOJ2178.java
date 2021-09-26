@@ -13,7 +13,9 @@ public class BOJ2178 {
     public static int[] dy = {0, 1, 0, -1};
 
     private static class Location {
-        int x; int y;
+        private final int x;
+        private final int y;
+
         public Location(int x, int y) {
             this.x = x;
             this.y = y;
@@ -25,13 +27,13 @@ public class BOJ2178 {
         queue.add(new Location(startX, startY));
 
         while (!queue.isEmpty()) {
-            Location pollLocation = queue.poll();
+            Location location = queue.poll();
             for (int i = 0; i < 4; i++) {
-                int x = pollLocation.x + dx[i];
-                int y = pollLocation.y + dy[i];
+                int x = location.x + dx[i];
+                int y = location.y + dy[i];
                 if (isLocation(x, y)) {
                     queue.add(new Location(x, y));
-                    map[x][y] += map[pollLocation.x][pollLocation.y];
+                    map[x][y] += map[location.x][location.y];
                 }
             }
         }
@@ -56,7 +58,7 @@ public class BOJ2178 {
         for (int i = 1; i <= n; i++) {
             String row = scanner.nextLine();
             for (int j = 1; j <= m; j++) {
-                map[i][j] = Integer.valueOf(row.charAt(j - 1) - '0');
+                map[i][j] = row.charAt(j - 1) - '0';
             }
         }
 

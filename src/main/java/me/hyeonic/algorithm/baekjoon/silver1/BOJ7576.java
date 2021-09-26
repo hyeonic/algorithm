@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 public class BOJ7576 {
 
-    static int m, n;
-    static int[][] graph;
+    private static int m, n;
+    private static int[][] graph;
 
     // 이동할 네 가지 방향 정의 (상, 하, 좌, 우)
-    public static int[] dx = {-1, 1, 0, 0};
-    public static int[] dy = {0, 0, -1, 1};
+    private static int[] dx = {-1, 1, 0, 0};
+    private static int[] dy = {0, 0, -1, 1};
 
-    static class Location {
+    private static class Location {
         int x; int y;
         public Location(int x, int y) {
             this.x = x;
@@ -33,14 +33,14 @@ public class BOJ7576 {
         }
 
         while (!queue.isEmpty()) {
-            Location poll = queue.poll();
+            Location location = queue.poll();
             for (int i = 0; i < 4; i++) {
-                int x = poll.x + dx[i];
-                int y = poll.y + dy[i];
+                int x = location.x + dx[i];
+                int y = location.y + dy[i];
 
                 if (isLocation(x, y)) {
                     queue.add(new Location(x, y));
-                    graph[x][y] = graph[poll.x][poll.y] + 1;
+                    graph[x][y] = graph[location.x][location.y] + 1;
                 }
             }
         }

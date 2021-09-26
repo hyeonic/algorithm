@@ -17,7 +17,6 @@ public class BOJ10844 {
         }
 
         for (int i = 2; i <= n; i++) {
-
             for (int j = 0; j < 10; j++) {
 
                 if (j == 0) {

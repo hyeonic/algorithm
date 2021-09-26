@@ -6,14 +6,13 @@ import java.util.Scanner;
 
 public class BOJ1446 {
 
-    private static int n, d;
     private static List<Path> paths = new ArrayList<>();
     private static int[] dist = new int[10_001];
 
     private static class Path {
-        private int start;
-        private int end;
-        private int distance;
+        private final int start;
+        private final int end;
+        private final int distance;
 
         public Path(int start, int end, int distance) {
             this.start = start;
@@ -25,8 +24,8 @@ public class BOJ1446 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        n = scanner.nextInt(); // 지름길의 개수
-        d = scanner.nextInt(); // 고속도로의 길이
+        int n = scanner.nextInt(); // 지름길의 개수
+        int d = scanner.nextInt(); // 고속도로의 길이
 
         for (int i = 0; i < n; i++) {
             int start = scanner.nextInt();

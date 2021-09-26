@@ -30,12 +30,12 @@ public class BOJ1697 {
         while (!queue.isEmpty()) {
             Integer poll = queue.poll();
             for (int i = 0; i < 3; i++) {
-                int next = 0;
+                int next;
                 if (i == 0) {
                     next = poll - 1;
                 } else if (i == 1) {
                     next = poll + 1;
-                } else if (i == 2) {
+                } else {
                     next = poll * 2;
                 }
 

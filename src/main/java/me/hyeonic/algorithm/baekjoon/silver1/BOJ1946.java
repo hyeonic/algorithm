@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 public class BOJ1946 {
 
-    private static int t;
-
     private static class Employee {
         private final int a; // 1차 서류심사
         private final int b; // 2차 면접시험
@@ -30,7 +28,7 @@ public class BOJ1946 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        t = scanner.nextInt();
+        int t = scanner.nextInt();
 
         while (t-- > 0) {
             int employeeCount = scanner.nextInt();
