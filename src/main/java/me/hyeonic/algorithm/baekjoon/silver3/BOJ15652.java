@@ -1,29 +1,25 @@
 package me.hyeonic.algorithm.baekjoon.silver3;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class BOJ15649 {
+public class BOJ15652 {
 
-    static int n, m;
-    static int[] result;
-    static boolean[] visited;
+    private static int n, m;
+    private static int[] array;
 
     private static void backtracking(int depth) {
 
         if (depth == m) {
-            for (int i : result) {
-                System.out.print(i + " ");
-            }
+            Arrays.stream(array).forEach(i -> System.out.print(i + " "));
             System.out.println();
             return;
         }
 
         for (int i = 1; i <= n; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                result[depth] = i;
+            if (depth == 0 || i >= array[depth - 1]) {
+                array[depth] = i;
                 backtracking(depth + 1);
-                visited[i] = false;
             }
         }
     }
@@ -34,8 +30,7 @@ public class BOJ15649 {
         n = scanner.nextInt();
         m = scanner.nextInt();
 
-        result = new int[m];
-        visited = new boolean[n + 1];
+        array = new int[m];
 
         backtracking(0);
     }

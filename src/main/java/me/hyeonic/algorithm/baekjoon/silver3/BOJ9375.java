@@ -15,11 +15,10 @@ public class BOJ9375 {
             int n = scanner.nextInt();
             Map<String, Integer> clothes = new HashMap<>();
 
-            scanner.nextLine();
-
             for (int i = 0; i < n; i++) {
-                String[] clothe = scanner.nextLine().split(" ");
-                clothes.put(clothe[1], clothes.getOrDefault(clothe[1], 0) + 1);
+                String type = scanner.next();
+                String clothe = scanner.next();
+                clothes.put(clothe, clothes.getOrDefault(clothe, 0) + 1);
             }
 
             int mul = 1;

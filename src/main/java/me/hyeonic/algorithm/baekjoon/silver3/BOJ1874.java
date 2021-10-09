@@ -14,13 +14,13 @@ public class BOJ1874 {
         Stack<Integer> stack = new Stack<>();
 
         int start = 0;
-        for (int i = 1; i <= n; i++) {
+        while (n-- > 0) {
 
             int target = scanner.nextInt();
 
             if (target > start) {
-                for (int j = start + 1; j <= target; j++) {
-                    stack.push(j);
+                for (int i = start + 1; i <= target; i++) {
+                    stack.push(i);
                     stringBuilder.append("+\n");
                 }
                 start = target;

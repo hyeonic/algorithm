@@ -53,5 +53,4 @@ public class BOJ2606 {
 
         System.out.println(bfs(1));
     }
-
 }
