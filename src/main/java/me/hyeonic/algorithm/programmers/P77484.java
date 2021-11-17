@@ -1,39 +1,43 @@
 package me.hyeonic.algorithm.programmers;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 public class P77484 {
 
-    public int[] solution(int[] lottos, int[] win_nums) {
-        int[] answer = new int[2];
+    public int[] solution(int[] lottoNumbers, int[] winNums) {
 
-        int same = 0;
-        for (int win_num : win_nums) {
-            for (int lotto : lottos) {
-                if (lotto == win_num) {
-                    same++;
-                }
-            }
-        }
+        HashSet<Integer> hashSet = new HashSet<>();
 
         int zeroCount = 0;
-        for (int lotto : lottos) {
-            if (lotto == 0) {
+        for (Integer number : lottoNumbers) {
+            if (number == 0) {
                 zeroCount++;
+                continue;
+            }
+
+            hashSet.add(number);
+        }
+
+        int same = 0;
+        for (int winNum : winNums) {
+            if (hashSet.contains(winNum)) {
+                same++;
             }
         }
 
-        if (same < 2) {
-            answer[1] = 6;
-        } else {
-            answer[1] = 7 - same;
+        int maxRank = 7 - (same + zeroCount);
+        int minRank = 7 - same;
+
+        if (maxRank > 6) {
+            maxRank = 6;
         }
 
-        if (same + zeroCount < 2) {
-            answer[0] = 6;
-        } else {
-            answer[0] = 7 - (same + zeroCount);
+        if (minRank > 6) {
+            minRank = 6;
         }
 
-        return answer;
+        return new int[]{maxRank, minRank};
     }
 
     public static void main(String[] args) {
@@ -44,32 +48,20 @@ public class P77484 {
                 new int[]{31, 10, 45, 1, 6, 19}
         );
 
-        System.out.print("[");
-        for (int i : solution) {
-            System.out.print(i + " ");
-        }
-        System.out.print("]\n");
+        System.out.println(Arrays.toString(solution));
 
         solution = p77484.solution(
                 new int[]{0, 0, 0, 0, 0, 0},
                 new int[]{38, 19, 20, 40, 15, 25}
         );
 
-        System.out.print("[");
-        for (int i : solution) {
-            System.out.print(i + " ");
-        }
-        System.out.print("]\n");
+        System.out.println(Arrays.toString(solution));
 
         solution = p77484.solution(
                 new int[]{45, 4, 35, 20, 3, 9},
                 new int[]{20, 9, 3, 45, 4, 35}
         );
 
-        System.out.print("[");
-        for (int i : solution) {
-            System.out.print(i + " ");
-        }
-        System.out.print("]\n");
+        System.out.println(Arrays.toString(solution));
     }
 }
