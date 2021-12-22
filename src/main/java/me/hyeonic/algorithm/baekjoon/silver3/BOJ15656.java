@@ -8,10 +8,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-public class BOJ15654 {
+public class BOJ15656 {
     private static int n;
     private static int m;
-    private static boolean[] visited;
     private static List<Integer> numbers;
     private static List<String> results;
 
@@ -21,7 +20,6 @@ public class BOJ15654 {
         n = scanner.nextInt();
         m = scanner.nextInt();
 
-        visited = new boolean[n];
         numbers = new ArrayList<>();
         results = new ArrayList<>();
 
@@ -33,7 +31,7 @@ public class BOJ15654 {
 
         backtracking(0, new int[m]);
 
-        results.forEach(System.out::println);
+        System.out.println(String.join("\n", results));
     }
 
     private static void backtracking(int depth, int[] values) {
@@ -46,14 +44,8 @@ public class BOJ15654 {
         }
 
         for (int i = 0; i < n; i++) {
-            if (visited[i]) {
-                continue;
-            }
-
-            visited[i] = true;
             values[depth] = numbers.get(i);
             backtracking(depth + 1, values);
-            visited[i] = false;
         }
     }
 }

@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-public class BOJ15654 {
+public class BOJ15655 {
     private static int n;
     private static int m;
     private static boolean[] visited;
@@ -31,12 +31,12 @@ public class BOJ15654 {
 
         numbers.sort(Comparator.naturalOrder());
 
-        backtracking(0, new int[m]);
+        backtracking(0, 0, new int[m]);
 
         results.forEach(System.out::println);
     }
 
-    private static void backtracking(int depth, int[] values) {
+    private static void backtracking(int depth, int start, int[] values) {
         if (depth == m) {
             String result = Arrays.stream(values)
                 .mapToObj(String::valueOf)
@@ -45,14 +45,14 @@ public class BOJ15654 {
             return;
         }
 
-        for (int i = 0; i < n; i++) {
+        for (int i = start; i < n; i++) {
             if (visited[i]) {
                 continue;
             }
 
             visited[i] = true;
             values[depth] = numbers.get(i);
-            backtracking(depth + 1, values);
+            backtracking(depth + 1, i, values);
             visited[i] = false;
         }
     }

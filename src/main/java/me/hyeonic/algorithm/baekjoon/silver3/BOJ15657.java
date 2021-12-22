@@ -1,29 +1,18 @@
 package me.hyeonic.algorithm.baekjoon.silver3;
 
+import static java.util.stream.Collectors.*;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class BOJ15657 {
-
-    private static int n, m;
-    private static int[] array;
-    private static int[] result;
-
-    private static void backtracking(int depth, int index) {
-
-        if (depth == m) {
-            for (int i : result) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
-            return;
-        }
-
-        for (int i = index; i < n; i++) {
-            result[depth] = array[i];
-            backtracking(depth + 1, i);
-        }
-    }
+    private static int n;
+    private static int m;
+    private static List<Integer> numbers;
+    private static List<String> results;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -31,16 +20,32 @@ public class BOJ15657 {
         n = scanner.nextInt();
         m = scanner.nextInt();
 
-        array = new int[n];
-        result = new int[m];
+        numbers = new ArrayList<>();
+        results = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            array[i] = scanner.nextInt();
+            numbers.add(scanner.nextInt());
         }
 
-        Arrays.sort(array);
+        numbers.sort(Comparator.naturalOrder());
 
+        backtracking(0, 0, new int[m]);
 
-        backtracking(0, 0);
+        results.forEach(System.out::println);
+    }
+
+    private static void backtracking(int depth, int start, int[] values) {
+        if (depth == m) {
+            String result = Arrays.stream(values)
+                .mapToObj(String::valueOf)
+                .collect(joining(" "));
+            results.add(result);
+            return;
+        }
+
+        for (int i = start; i < n; i++) {
+            values[depth] = numbers.get(i);
+            backtracking(depth + 1, i, values);
+        }
     }
 }
