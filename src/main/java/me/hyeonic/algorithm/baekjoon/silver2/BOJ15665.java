@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-public class BOJ15666 {
+public class BOJ15665 {
     private static int n;
     private static int m;
     private static List<Integer> numbers;
@@ -31,12 +31,12 @@ public class BOJ15666 {
 
         numbers.sort(Comparator.naturalOrder());
 
-        backtracking(0, 0, new int[m]);
+        backtracking(0, new int[m]);
 
-        results.forEach(System.out::println);
+        System.out.println(String.join("\n", results));
     }
 
-    private static void backtracking(int depth, int start, int[] values) {
+    private static void backtracking(int depth, int[] values) {
         if (depth == m) {
             String result = Arrays.stream(values)
                 .mapToObj(String::valueOf)
@@ -45,9 +45,9 @@ public class BOJ15666 {
             return;
         }
 
-        for (int i = start; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             values[depth] = numbers.get(i);
-            backtracking(depth + 1, i, values);
+            backtracking(depth + 1, values);
         }
     }
 }

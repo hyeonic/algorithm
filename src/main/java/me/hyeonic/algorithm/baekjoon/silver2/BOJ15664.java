@@ -14,8 +14,8 @@ public class BOJ15664 {
     private static int n;
     private static int m;
     private static boolean[] visited;
-    private static List<Integer> numbers = new ArrayList<>();
-    private static Set<String> results = new LinkedHashSet<>();
+    private static List<Integer> numbers;
+    private static Set<String> results;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -24,6 +24,8 @@ public class BOJ15664 {
         m = scanner.nextInt();
 
         visited = new boolean[n];
+        numbers = new ArrayList<>();
+        results = new LinkedHashSet<>();
         for (int i = 0; i < n; i++) {
             numbers.add(scanner.nextInt());
         }
@@ -35,7 +37,7 @@ public class BOJ15664 {
         results.forEach(System.out::println);
     }
 
-    private static void backtracking(int start, int depth, int[] values) {
+    private static void backtracking(int depth, int start, int[] values) {
         if (depth == m) {
             String result = Arrays.stream(values)
                 .mapToObj(String::valueOf)
@@ -51,7 +53,7 @@ public class BOJ15664 {
 
             visited[i] = true;
             values[depth] = numbers.get(i);
-            backtracking(i, depth + 1, values);
+            backtracking(depth + 1, i, values);
             visited[i] = false;
         }
     }

@@ -8,13 +8,14 @@ import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class BOJ15663 {
     private static int n;
     private static int m;
-    private static List<Integer> numbers;
-    private static LinkedHashSet<String> results;
     private static boolean[] visited;
+    private static List<Integer> numbers;
+    private static Set<String> results;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,15 +23,16 @@ public class BOJ15663 {
         n = scanner.nextInt();
         m = scanner.nextInt();
 
+        visited = new boolean[n];
         numbers = new ArrayList<>();
+        results = new LinkedHashSet<>();
+
         for (int i = 0; i < n; i++) {
             numbers.add(scanner.nextInt());
         }
 
         numbers.sort(Comparator.naturalOrder());
 
-        results = new LinkedHashSet<>();
-        visited = new boolean[n];
         backtracking(0, new int[m]);
 
         results.forEach(System.out::println);
