@@ -1,28 +1,16 @@
 package me.hyeonic.algorithm.baekjoon.silver3;
 
+import static java.util.stream.Collectors.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class BOJ15651 {
-
-    private static int n, m;
-    private static int[] result;
-    private static StringBuilder stringBuilder;
-
-    private static void backtracking(int depth) {
-
-        if (depth == m) {
-            for (int i = 0; i < depth; i++) {
-                stringBuilder.append(result[i]).append(" ");
-            }
-            stringBuilder.append("\n");
-            return;
-        }
-
-        for (int i = 1; i <= n; i++) {
-            result[depth] = i;
-            backtracking(depth + 1);
-        }
-    }
+    private static int n;
+    private static int m;
+    private static List<String> results;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -30,11 +18,25 @@ public class BOJ15651 {
         n = scanner.nextInt();
         m = scanner.nextInt();
 
-        stringBuilder = new StringBuilder();
-        result = new int[n];
+        results = new ArrayList<>();
 
-        backtracking(0);
+        backtracking(0, new int[m]);
 
-        System.out.println(stringBuilder);
+        System.out.println(String.join("\n", results));
+    }
+
+    private static void backtracking(int depth, int[] values) {
+        if (depth == m) {
+            String result = Arrays.stream(values)
+                .mapToObj(String::valueOf)
+                .collect(joining(" "));
+            results.add(result);
+            return;
+        }
+
+        for (int i = 1; i <= n; i++) {
+            values[depth] = i;
+            backtracking(depth + 1, values);
+        }
     }
 }
