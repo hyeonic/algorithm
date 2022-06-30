@@ -1,12 +1,15 @@
 package me.hyeonic.algorithm.kstudy.week1;
 
-import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
-public class BOJ10841 {
+public class BOJ10814 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -15,12 +18,22 @@ public class BOJ10841 {
 
         List<Member> members = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            Member member = new Member(scanner.nextInt(), scanner.next());
-            members.add(member);
+            members.add(new Member(scanner.nextInt(), scanner.next()));
         }
 
-        members.sort(comparing(Member::getAge));
-        members.forEach(System.out::println);
+        List<LinkedList<Member>> counts = IntStream.rangeClosed(0, 200)
+                .mapToObj(ignored -> new LinkedList<Member>())
+                .collect(toList());
+
+        for (Member member : members) {
+            counts.get(member.getAge()).add(member);
+        }
+
+        for (Queue<Member> count : counts) {
+            while (!count.isEmpty()) {
+                System.out.println(count.poll());
+            }
+        }
     }
 }
 
