@@ -6,14 +6,11 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-/*
- * 병합 정렬 풀이
- * 시간 초과로 실패
- */
 public class BOJ11582withDivideAndConquer {
 
     private static int n, k;
     private static int[] numbers;
+    private static int[] sortedNumbers;
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -27,6 +24,7 @@ public class BOJ11582withDivideAndConquer {
 
         k = Integer.parseInt(bufferedReader.readLine());
 
+        sortedNumbers = new int[n];
         mergeSort(0, n - 1);
 
         String result = Arrays.stream(numbers)
@@ -52,7 +50,6 @@ public class BOJ11582withDivideAndConquer {
     private static void merge(int left, int mid, int right) {
         /*
          * right - left -> 현재 병합해야 하는 왼쪽 서브 리스트와 오른쪽 서브 리스트의 총 크기
-         * n / k ->
          */
         if (right - left > n / k) {
             return;
@@ -62,7 +59,6 @@ public class BOJ11582withDivideAndConquer {
         int r = mid + 1;
         int index = left;
 
-        int[] sortedNumbers = new int[n];
         while (l <= mid && r <= right) {
             if (numbers[l] <= numbers[r]) {
                 sortedNumbers[index] = numbers[l];
